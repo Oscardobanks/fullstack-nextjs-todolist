@@ -8,7 +8,7 @@ const TodoList = ({ todos, onDelete }) => {
     <div>
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-4">
         <div className="flex flex-col gap-3">
-          {todos.length != 0 && (
+          {todos?.length != 0 && (
             <p className="sm:block hidden bg-red-200 font-bold text-lg ps-2 mb-2">
               High Priority
             </p>
@@ -42,7 +42,7 @@ const TodoList = ({ todos, onDelete }) => {
         </div>
 
         <div className="flex flex-col gap-3">
-          {todos.length != 0 && (
+          {todos?.length != 0 && (
             <p className="sm:block hidden bg-yellow-100 font-bold text-lg ps-2 mb-2">
               Medium Priority
             </p>
@@ -76,7 +76,7 @@ const TodoList = ({ todos, onDelete }) => {
         </div>
 
         <div className="flex flex-col gap-3">
-          {todos.length != 0 && (
+          {todos?.length != 0 && (
             <p className="sm:block hidden bg-green-200 font-bold text-lg ps-2 mb-2">
               Low Priority
             </p>
