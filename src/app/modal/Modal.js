@@ -6,15 +6,18 @@ import { useState } from "react";
 export function ModalComponent({ isModalOpen, closeModal, onSubmit,  todo }) {
   const [formData, setFormData] = useState({title: todo ? todo.title : "", priority: todo ? todo.priority : "", completed: todo ? todo.completed : false })
   if (!isModalOpen) return null;
-  
-  const handleToggleCompleted = () => {
-    setFormData({completed: !formData.completed});
-  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({...formData, [name]: value });
-  }
+    const { name, type, checked, value } = e.target;
+    if (name === "completed") {
+      setFormData({ ...formData, completed: checked });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === "checkbox" ? checked : value,
+      });
+    }
+  };
 
   function onCloseModal() {
     closeModal();
@@ -93,9 +96,10 @@ export function ModalComponent({ isModalOpen, closeModal, onSubmit,  todo }) {
                   <label class="inline-flex items-center">
                     <input
                       type="checkbox"
+                      name="completed"
                       class="rounded-sm text-green-500 focus:outline-green-300"
                       checked={formData.completed}
-                      onChange={handleToggleCompleted}
+                      onChange={handleInputChange}
                     />
                     <span class="ml-3 font-semibold">Completed</span>
                   </label>
